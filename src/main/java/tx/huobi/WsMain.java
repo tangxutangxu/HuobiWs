@@ -12,7 +12,8 @@ public class WsMain {
 
 		WebSoketClient client = new WebSoketClient(url, service);
 		client.start();
-//		client.addSub("market.egccbtc.depth.step0", "client1");
 		client.addSub("market.egccbtc.depth.step0", "client1");
+		//client.addSub("market.egccbtc.depth.step0", "client1");
+//		client.topicAll("egccbtc");
 	}
 }
