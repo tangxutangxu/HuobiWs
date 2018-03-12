@@ -6,4 +6,5 @@ public interface IWebSocketService {
 	
 	public void onReceive(JSONObject json);
 	
+	public void onReset();
 }

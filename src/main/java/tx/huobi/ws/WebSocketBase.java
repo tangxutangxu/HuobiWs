@@ -92,9 +92,9 @@ public class WebSocketBase {
 
 	public void sendMessage(String message) {
 		if (!isAlive) {
-			log.info("WebSocket is not Alive addChannel error");
+			log.warn("WebSocket is not Alive addChannel error");
 		}
-		log.info("send:" + message);
+		log.debug("send:" + message);
 		channel.writeAndFlush(new TextWebSocketFrame(message));
 	}
 
@@ -124,6 +124,7 @@ public class WebSocketBase {
 
 	public void reConnect() {
 		try {
+			service.onReset();
 			this.group.shutdownGracefully();
 			this.group = null;
 			this.connect();

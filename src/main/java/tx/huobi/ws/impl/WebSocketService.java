@@ -14,4 +14,8 @@ public class WebSocketService implements IWebSocketService{
 		log.info("receive:" + json.toJSONString());
 		
 	}
+	
+	public void onReset(){
+		
+	}
 }
