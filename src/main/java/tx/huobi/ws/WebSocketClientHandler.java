@@ -83,9 +83,16 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
 		}
 
 		WebSocketFrame frame = (WebSocketFrame) msg;
-
-		BinaryWebSocketFrame binaryFrame = (BinaryWebSocketFrame) frame;
-		service.onReceive(decodeByteBuff(binaryFrame.content()));
+		if (frame instanceof BinaryWebSocketFrame) {
+			BinaryWebSocketFrame binaryFrame = (BinaryWebSocketFrame) frame;
+			service.onReceive(decodeByteBuff(binaryFrame.content()));
+        }else if (frame instanceof PongWebSocketFrame) {
+        	log.info("WebSocket Client received pong");
+        } else if (frame instanceof CloseWebSocketFrame) {
+        	log.info("WebSocket Client received closing");
+            ch.close();
+        }
+		
 		
 	}
 
